@@ -1,3 +1,35 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .text-gradient {
+    @apply text-transparent bg-gradient-to-r from-sky-500 via-blue-500 to-blue-600 bg-clip-text;
+  }
+
+  .btn-gradient {
+    @apply px-4 py-2 bg-gradient-to-r from-sky-500 via-blue-500 to-blue-600 text-white rounded-md;
+  }
+
+  .container {
+    @apply mx-auto relative;
+  }
+}
+body {
+  margin: 0;
+  line-height: inherit;
+  font-family: sans-serif;
+}
+
+html,
+:host {
+  line-height: 1.5; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+  -moz-tab-size: 4; /* 3 */
+  -o-tab-size: 4;
+  tab-size: 4; /* 3 */
+  font-family: PingARLT, PT Sans, sans-serif; /* 4 */
+  font-feature-settings: normal; /* 5 */
+  font-variation-settings: normal; /* 6 */
+  -webkit-tap-highlight-color: transparent; /* 7 */
+}
