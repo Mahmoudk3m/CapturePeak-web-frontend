@@ -5,7 +5,7 @@ export default function Header() {
   return (
     <header className="w-full">
       <div className="container">
-        <div className="md:py-6 py-4">
+        <div>
           <div className="flex justify-between flex-col sm:flex-row gap-4 items-center">
             <div className="flex flex-row items-center gap-2 relative">
               <Link to="/" className="block w-24 h-24 bg-gray-50 rounded-full">
