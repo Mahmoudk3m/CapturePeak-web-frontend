@@ -2,8 +2,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import registerSchema from "../schemas/register";
 import { useForm } from "react-hook-form";
 import ErrorMessage from "@/Shared/components/ErrorMessage";
+import { useNavigate } from "react-router-dom";
 
-export default function RegisterForm({ handleButtonPress }: { handleButtonPress: () => void }) {
+export default function RegisterForm() {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -76,7 +78,7 @@ export default function RegisterForm({ handleButtonPress }: { handleButtonPress:
         <button className="bg-primary-500 text-white rounded-md px-2 py-1">Submit</button>
       </div>
       <div className="relative">
-        <button onClick={handleButtonPress} className="text-primary-500">
+        <button onClick={() => navigate("/login")} className="text-primary-500">
           Already Have An Account ?
         </button>
       </div>

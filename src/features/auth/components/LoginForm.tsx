@@ -2,8 +2,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import loginSchema from "../schemas/login";
 import ErrorMessage from "@/Shared/components/ErrorMessage";
+import { useNavigate } from "react-router-dom";
 
-export default function LoginForm({ handleButtonPress }: { handleButtonPress: () => void }) {
+export default function LoginForm() {
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -49,7 +52,7 @@ export default function LoginForm({ handleButtonPress }: { handleButtonPress: ()
         <button className="bg-primary-500 text-white rounded-md px-2 py-1">Submit</button>
       </div>
       <div className="relative">
-        <button onClick={handleButtonPress} className="text-primary-500">
+        <button onClick={() => navigate("/register")} className="text-primary-500">
           Don't Have An Account ?
         </button>
       </div>

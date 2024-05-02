@@ -1,5 +1,5 @@
 import { Home } from "@/features/home";
-import { Auth } from "@/features/auth";
+import { Register, Login } from "@/features/auth";
 
 const CommonRoutes = [
   {
@@ -7,9 +7,14 @@ const CommonRoutes = [
     element: <Home />
   },
   {
-    path: "/auth",
-    element: <Auth />
+    path: "/login",
+    element: <Login />
   },
+  {
+    path: "/register",
+    element: <Register />
+  },
+
   {
     path: "*",
     element: <div>Not Found</div>
