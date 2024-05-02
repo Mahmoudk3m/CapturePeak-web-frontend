@@ -1,7 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Navbar from "./Navbar";
 
 export default function Header() {
+  const location = useLocation();
+
+  const isNavbarHidden = () => {
+    return location.pathname === "/login" || location.pathname === "/register";
+  };
+
   return (
     <header className="w-full">
       <div className="container">
@@ -16,7 +22,7 @@ export default function Header() {
                 <small className="text-gray-400">A simple and clean media sharing platform</small>
               </div>
             </div>
-            <Navbar />
+            {!isNavbarHidden() && <Navbar />}
           </div>
         </div>
       </div>

@@ -12,7 +12,7 @@ export default function RegisterForm() {
     formState: { errors }
   } = useForm({ resolver: yupResolver(registerSchema) });
 
-  const onSubmit = (data: AuthTypes.RegisterPayload) => {
+  const onSubmit = (data: AuthTypes.Payload) => {
     console.log(data);
   };
 
@@ -33,20 +33,6 @@ export default function RegisterForm() {
           Username
         </label>
         {errors.username?.message && <ErrorMessage message={errors.username.message} />}
-      </div>
-
-      <div className="relative">
-        <input
-          id="email"
-          type="text"
-          className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
-          placeholder="Email address"
-          {...register("email")}
-        />
-        <label className="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">
-          Email Address
-        </label>
-        {errors.email?.message && <ErrorMessage message={errors.email.message} />}
       </div>
       <div className="relative">
         <input

@@ -1,12 +1,5 @@
 declare namespace AuthTypes {
-  interface AuthState {
-    user: User | null;
-    loading: boolean;
-    error: string | null;
-  }
-
   interface User {
-    email: string;
     token: string;
     username: string;
     image: string;
@@ -16,17 +9,9 @@ declare namespace AuthTypes {
     user: User;
   }
 
-  interface LoginPayload {
-    user: {
-      email: string;
-      password: string;
-    };
-  }
-
-  interface RegisterPayload {
+  interface Payload {
     user: {
       username: string;
-      email: string;
       password: string;
     };
   }
