@@ -3,7 +3,7 @@ export default function Footer() {
     <footer className="w-full bg-primary-50">
       <div className="container">
         <div className="py-4">
-          <p className="text-center text-gray-400">© 2024 Capture Peak. All rights reserved.</p>
+          <p className="text-center text-gray-400 text-xs sm:text-sm">© 2024 Capture Peak. All rights reserved.</p>
         </div>
       </div>
     </footer>
