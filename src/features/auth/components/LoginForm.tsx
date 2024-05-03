@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import loginSchema from "../schemas/login";
 import ErrorMessage from "@/Shared/components/ErrorMessage";
 import { useNavigate } from "react-router-dom";
+import { useUserLogin } from "../api/userLogin";
 
 export default function LoginForm() {
   const navigate = useNavigate();
@@ -13,13 +14,15 @@ export default function LoginForm() {
     formState: { errors }
   } = useForm({ resolver: yupResolver(loginSchema) });
 
+  const { mutate } = useUserLogin();
+
   const onSubmit = (data: AuthTypes.Payload) => {
-    console.log(data);
+    mutate(data);
   };
 
   return (
     <form
-      onSubmit={handleSubmit((data) => onSubmit({ user: data }))}
+      onSubmit={handleSubmit((data) => onSubmit(data))}
       className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7"
     >
       <div className="relative">

@@ -5,14 +5,8 @@ declare namespace AuthTypes {
     image: string;
   }
 
-  interface AuthResponse {
-    user: User;
-  }
-
   interface Payload {
-    user: {
-      username: string;
-      password: string;
-    };
+    username: string;
+    password: string;
   }
 }

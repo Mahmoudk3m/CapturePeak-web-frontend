@@ -3,6 +3,7 @@ import registerSchema from "../schemas/register";
 import { useForm } from "react-hook-form";
 import ErrorMessage from "@/Shared/components/ErrorMessage";
 import { useNavigate } from "react-router-dom";
+import { useUserRegister } from "../api/userRegister";
 
 export default function RegisterForm() {
   const navigate = useNavigate();
@@ -12,13 +13,15 @@ export default function RegisterForm() {
     formState: { errors }
   } = useForm({ resolver: yupResolver(registerSchema) });
 
+  const { mutate } = useUserRegister();
+
   const onSubmit = (data: AuthTypes.Payload) => {
-    console.log(data);
+    mutate(data);
   };
 
   return (
     <form
-      onSubmit={handleSubmit((data) => onSubmit({ user: data }))}
+      onSubmit={handleSubmit((data) => onSubmit({ username: data.username, password: data.password }))}
       className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7"
     >
       <div className="relative">
