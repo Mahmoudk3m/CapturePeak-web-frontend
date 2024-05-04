@@ -1,31 +1,38 @@
+import Loader from "@/Shared/components/Loader";
+import { useGetPosts } from "../api/getPosts";
 import Post from "../components/Post";
 import UploadButton from "../components/UploadButton";
+import useUserStore from "@/stores/userStore";
 
 export default function Home() {
-  const images = [
-    "https://source.unsplash.com/1600x900/?nature",
-    "https://source.unsplash.com/1600x900/?water",
-    "https://source.unsplash.com/1600x900/?mountain",
-    "https://source.unsplash.com/1600x900/?tree",
-    "https://source.unsplash.com/1600x900/?forest",
-    "https://source.unsplash.com/1600x900/?sky",
-    "https://source.unsplash.com/1600x900/?cloud"
-  ];
+  const { data, isLoading, isError } = useGetPosts();
+  const { user } = useUserStore();
+  const isLoggedIn = !!user?.token;
+
   return (
     <main className="w-full flex-auto">
-      <UploadButton />
+      {isLoggedIn && <UploadButton />}
       <div className="container">
-        <div className="flex flex-col items-center">
-          {images.map((image, index) => (
-            <Post
-              key={index}
-              image={image}
-              username={`user${index}`}
-              userImage={"https://source.unsplash.com/1600x900/?profile"}
-              likes={(index + 2) * index + 1}
-              liked={index % 2 == 0}
-            />
-          ))}
+        <div className="flex flex-col items-center min-h-screen justify-center">
+          {isLoading ? (
+            <Loader />
+          ) : isError ? (
+            "Error loading Images"
+          ) : data?.length == 0 ? (
+            "No Images Found"
+          ) : (
+            data?.map((item, index) => (
+              <Post
+                key={index}
+                image={item.path}
+                username={item.authorId.username}
+                userImage={item.authorId.image}
+                likes={item.likes}
+                liked={item.liked}
+                id={item._id}
+              />
+            ))
+          )}
         </div>
       </div>
     </main>
