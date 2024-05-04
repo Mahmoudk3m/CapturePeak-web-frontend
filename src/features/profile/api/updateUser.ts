@@ -1,5 +1,7 @@
 import { axiosClient } from "@/lib/axiosClient";
+import { queryClient } from "@/lib/queryClient";
 import useUserStore from "@/stores/userStore";
+import Cookies from "js-cookie";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 
@@ -9,15 +11,16 @@ const updateUser = async (data: { user: SettingsTypes.User }): Promise<SettingsT
 
 export const useUpdateUser = () => {
   const navigate = useNavigate();
-  const { setUser, user } = useUserStore();
-  console.log(user, "user store");
+  const { setUser } = useUserStore();
 
   return useMutation({
+    mutationFn: updateUser,
+    mutationKey: "updateUser",
     onSuccess: (data) => {
-      console.log(data, "data from update user");
+      Cookies.set("token", data.token);
       setUser(data);
-      navigate(`/profile/${data.username}`);
-    },
-    mutationFn: updateUser
+      navigate("/");
+      queryClient.invalidateQueries({ queryKey: ["posts"] });
+    }
   });
 };

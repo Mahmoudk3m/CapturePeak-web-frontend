@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import useUserStore from "@/stores/userStore";
 import { useState } from "react";
 import { useUpdateUser } from "../api/updateUser";
+import { convertFileToBase64 } from "@/utils/convertToBase64";
 
 export default function SettingsForm() {
   const { register, handleSubmit } = useForm({ resolver: yupResolver(profileSchema) });
@@ -11,16 +12,7 @@ export default function SettingsForm() {
 
   const [image, setImage] = useState();
 
-  const { mutate } = useUpdateUser();
-
-  const convertFileToBase64 = (file: File): Promise<string> => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result as string);
-      reader.onerror = (error) => reject(error);
-    });
-  };
+  const { mutate, isLoading } = useUpdateUser();
 
   const onSubmit = async (data: SettingsTypes.User) => {
     if (image) {
@@ -38,15 +30,14 @@ export default function SettingsForm() {
   return (
     <form onSubmit={handleSubmit((data) => onSubmit(data))} className="w-full min-h-screen py-1 md:w-2/3 lg:w-3/4">
       <div className="p-2 md:p-4">
-        <div className="grid max-w-2xl mx-auto mt-8">
+        <div className="max-w-2xl mx-auto mt-8">
           <div className="flex flex-col items-center space-y-5 sm:flex-row sm:space-y-0">
             <img
               className="object-cover w-40 h-40 p-1 rounded-full ring-2 ring-indigo-300"
               src={user?.image || "https://static.productionready.io/images/smiley-cyrus.jpg"}
               alt="Bordered avatar"
             />
-
-            <div className="flex flex-col space-y-5 sm:ml-8">
+            <div className="flex flex-col space-y-5 w-60 sm:w-auto sm:ml-8">
               <input
                 type="file"
                 className="py-3.5 px-7 text-base font-medium text-indigo-100 focus:outline-none bg-primary-500 rounded-lg border border-indigo-200 hover:bg-primary-700 focus:z-10 focus:ring-4 focus:ring-indigo-200 "
@@ -84,8 +75,9 @@ export default function SettingsForm() {
               <button
                 type="submit"
                 className="text-white bg-primary-700  hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+                disabled={isLoading}
               >
-                Save
+                {isLoading ? "Saving" : "Save"}
               </button>
             </div>
           </div>
