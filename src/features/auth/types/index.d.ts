@@ -8,5 +8,6 @@ declare namespace AuthTypes {
   interface Payload {
     username: string;
     password: string;
+    image?: string;
   }
 }

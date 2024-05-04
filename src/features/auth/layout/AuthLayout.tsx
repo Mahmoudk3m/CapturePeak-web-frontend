@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export default function AuthLayout({ children, currentForm }: { children: ReactNode; currentForm: string }) {
   return (
-    <main className="w-full flex-auto h-screen">
+    <main className="w-full flex-auto min-h-screen">
       <div className="container ">
         <div className="flex flex-col justify-center pt-32">
           <div className="relative py-3 sm:max-w-xl sm:mx-auto">
