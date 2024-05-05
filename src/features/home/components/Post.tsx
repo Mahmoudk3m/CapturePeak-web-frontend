@@ -53,7 +53,11 @@ export default function Post({ image, username, userImage, likes, liked, id }: H
         />
         <p className="pl-2 font-bold text-sm">{username}</p>
       </div>
-      {isVideo ? <video src={image} controls /> : <img src={image} alt="random" className="w-full h-auto pb-2" />}
+      {isVideo ? (
+        <video src={image} controls className="w-full h-auto pb-2 max-h-[500px] object-cover" />
+      ) : (
+        <img src={image} alt="random" className="w-full h-auto pb-2 max-h-[500px] object-cover" />
+      )}
       <div className="flex flex-row justify-between">
         <div className="flex flex-row">
           <button onClick={handleLike} className="mr-1">
