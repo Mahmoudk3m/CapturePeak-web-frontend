@@ -4,10 +4,14 @@ import Trash from "@/assets/icons/Trash";
 import useUserStore from "@/stores/userStore";
 import { useDeletePost } from "../api/deletePost";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export default function Post({ image, username, userImage, likes, liked, id }: Home.PostProps) {
   const { mutate } = useReactPost();
   const { mutate: deletePost } = useDeletePost();
+
+  const [isLiked, setIsLiked] = useState(liked);
+  const [likesCount, setLikesCount] = useState(likes);
 
   const navigate = useNavigate();
 
@@ -24,7 +28,19 @@ export default function Post({ image, username, userImage, likes, liked, id }: H
       navigate("/login");
       return;
     }
-    mutate({ postId: id, action: liked ? "remove" : "add" });
+
+    setIsLiked(!isLiked);
+    setLikesCount(isLiked ? likesCount - 1 : likesCount + 1);
+
+    mutate(
+      { postId: id, action: isLiked ? "remove" : "add" },
+      {
+        onError: () => {
+          setIsLiked(!isLiked);
+          setLikesCount(isLiked ? likesCount + 1 : likesCount - 1);
+        }
+      }
+    );
   };
 
   return (
@@ -41,9 +57,9 @@ export default function Post({ image, username, userImage, likes, liked, id }: H
       <div className="flex flex-row justify-between">
         <div className="flex flex-row">
           <button onClick={handleLike} className="mr-1">
-            <Heart filled={liked} />
+            <Heart filled={isLiked} />
           </button>
-          <p className="pl-2">{likes}</p>
+          <p className="pl-2">{likesCount}</p>
         </div>
         {username === user?.username && (
           <button onClick={handleDelete} className="mr-1">
