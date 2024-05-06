@@ -19,7 +19,12 @@ export default function RegisterForm() {
   const { mutate, isError } = useUserRegister();
 
   const onSubmit = (data: AuthTypes.Payload) => {
-    mutate(data);
+    const formattedData = {
+      ...data,
+      username: data.username.toLowerCase()
+    };
+
+    mutate(formattedData);
   };
 
   const [showPassword, setShowPassword] = useState(false);

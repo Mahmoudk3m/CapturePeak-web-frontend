@@ -24,7 +24,12 @@ export default function SettingsForm() {
       data.image = user?.image || "";
     }
 
-    mutate({ user: data });
+    const formattedData = {
+      ...data,
+      username: data.username?.toLowerCase()
+    };
+
+    mutate({ user: formattedData });
   };
 
   return (

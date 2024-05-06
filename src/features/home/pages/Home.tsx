@@ -7,6 +7,7 @@ import useUserStore from "@/stores/userStore";
 export default function Home() {
   const { data, isLoading, isError } = useGetPosts();
   const { user } = useUserStore();
+
   const isLoggedIn = !!user?.token;
 
   return (

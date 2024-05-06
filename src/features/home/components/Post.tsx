@@ -18,7 +18,8 @@ export default function Post({ image, username, userImage, likes, liked, id }: H
   const isVideo = image.includes("video");
 
   const { user } = useUserStore();
-
+  console.log(user, "user store");
+  console.log(username, "username");
   const handleDelete = () => {
     deletePost(id);
   };
