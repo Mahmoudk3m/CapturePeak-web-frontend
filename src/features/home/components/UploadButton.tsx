@@ -10,7 +10,7 @@ export default function UploadButton() {
     if (file) {
       const base64 = await convertFileToBase64(file);
 
-      mutate({ title: file.name, file: base64 });
+      mutate({ title: file.name, uri: base64, type: file.type });
     }
   };
 
