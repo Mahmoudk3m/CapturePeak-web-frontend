@@ -1,30 +1,55 @@
-# React + TypeScript + Vite
+# CapturePeak Web Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+CapturePeak Web Frontend is the frontend component of the media sharing platform, developed using React. It provides a user interface for interacting with the backend server, allowing users to register, login, upload media content, view profiles, and interact with posts.
 
-Currently, two official plugins are available:
+## Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Usage](#usage)
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+To get started with CapturePeak Web Frontend on your local development environment, follow these instructions:
 
-- Configure the top-level `parserOptions` property like this:
+### Prerequisites
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+Make sure you have the following software installed:
+
+- Node.js (version 18 or higher)
+- npm (Node.js package manager)
+
+### Installation
+
+1. Clone the repository:
+
+```
+git clone https://github.com/Mahmoudk3m/CapturePeak-web-frontend.git
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+2. Navigate to the project directory:
+
+```
+cd CapturePeak-web-frontend
+```
+
+3. Install dependencies:
+
+```
+npm install
+```
+
+## Usage
+
+After installing the project dependencies, you can start using CapturePeak Web Frontend by running the development server locally. Below are the steps to run the server:
+
+1. Start the development server:
+
+```
+npm run dev
+```
+
+2. Access the web application through your preferred web browser.
+
+Now you can register, login, upload media content, view profiles, and interact with posts through the provided user interface.
